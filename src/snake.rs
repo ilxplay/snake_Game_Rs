@@ -65,8 +65,7 @@ impl SnakeGame {
         self.direction = self.next_direction;
 
         let (x, y) = self.snake[0];
-        // WARNING: There's no explicit underflow handling here
-        // (will panic in debug build)
+        
         let new_head = match self.direction {
             Direction::Up => (x, y - 1),
             Direction::Right => (x + 1, y),
@@ -79,7 +78,7 @@ impl SnakeGame {
             self.finished = true;
         } else {
             if new_head != self.food {
-                // Do not pop tail when eating food to make snake longer
+                
                 self.snake.pop_back();
             } else {
                 let free_positions = (0..self.height)
